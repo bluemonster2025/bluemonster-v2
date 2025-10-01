@@ -26,7 +26,7 @@ export default function Hero() {
   };
 
   return (
-    <Section className="bg-gradient-to-b from-[#687AF6] to-[#3D4790] relative flex flex-col items-center justify-center aspect-[2.3/1]">
+    <Section className="bg-gradient-to-b from-[#687AF6] to-[#3D4790] relative flex flex-col items-center justify-center aspect-[0.45/1] 2xs:aspect-[0.50/1] md:aspect-[1.40/1] lg:aspect-[2.3/1]">
       {/* Grid de fundo */}
       <div
         className="absolute inset-0"
@@ -38,9 +38,12 @@ export default function Hero() {
       />
 
       {/* Conteúdo */}
-      <div className="relative z-10 text-center px-4 flex flex-col items-center gap-20">
+      <div className="relative z-10 text-center px-4 flex flex-col items-center gap-15 md:gap-20 pt-20 md-pt-0">
         {/* Logo e slogan */}
-        <Link href="/" className="relative w-[200px] aspect-[4.65/1]">
+        <Link
+          href="/"
+          className="relative w-[308px] md:w-[250px] aspect-[5.81/1]"
+        >
           <Image
             fill
             alt="Blue Monster"
@@ -56,11 +59,11 @@ export default function Hero() {
             agência de desenvolvimento de
           </Title>
 
-          <Title className="text-white uppercase font-medium text-[calc(1rem+4vw)] sm:text-5xl/[63px] lg:text-[64px]/[72px] pb-5 flex items-center justify-center">
-            sites&nbsp;
+          <Title className="text-white uppercase font-medium text-[64px]/[72px] pb-5 md:flex items-center justify-center flex flex-col md:flex-row gap-4">
+            sites
             <TextHighlight
               textColor="text-greenscale-50"
-              className="overflow-hidden h-[1.2em] flex items-center"
+              className="overflow-hidden h-[1.2em] flex items-center justify-center"
             >
               <AnimatePresence mode="wait">
                 <motion.span
@@ -75,7 +78,9 @@ export default function Hero() {
                 </motion.span>
               </AnimatePresence>
             </TextHighlight>
-            &nbsp;e de alta performance.
+            <Title className="hidden md:block">e de alta performance.</Title>
+            <Title className="block md:hidden">e de alta</Title>
+            <Title className="block md:hidden">performance.</Title>
           </Title>
         </div>
 

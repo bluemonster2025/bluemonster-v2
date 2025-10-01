@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Section } from "@/components/elements/Section";
 import Link from "next/link";
 import Image from "next/image";
 import { links } from "./context";
@@ -82,17 +81,16 @@ export default function Header() {
   }, []);
 
   return (
-    <Section
-      asTag="header"
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-[488px] h-[96px] lg:h-[51px] flex items-center justify-center z-50 bg-[#00000066] rounded-lg ${
+    <header
+      className={`fixed top-8 md:top-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center z-50 bg-[#00000066] rounded-lg ${
         (scrollTopDistance > 30 || isOpenMobileMenu) &&
         "bg-grayscale-700 backdrop-blur-lg bg-opacity-60"
       }`}
     >
-      <div className="flex w-full items-center justify-between px-4 gap-8">
+      <div className="flex w-full items-center justify-between px-4 md:gap-8 aspect-square md:aspect-[9.56/1]">
         <Link
           href="/"
-          className="relative w-[34px] aspect-square"
+          className="relative w-[34px] h-[34px] aspect-square"
           onClick={() => setHash("")}
         >
           <Image
@@ -141,13 +139,15 @@ export default function Header() {
             );
           })}
         </nav>
-
-        <WhatsAppButton
-          variant="icon"
-          iconName="BsWhatsapp"
-          iconColor="#0F0F0F"
-        />
+        <div className="hidden md:block">
+          {" "}
+          <WhatsAppButton
+            variant="icon"
+            iconName="BsWhatsapp"
+            iconColor="#0F0F0F"
+          />
+        </div>
       </div>
-    </Section>
+    </header>
   );
 }

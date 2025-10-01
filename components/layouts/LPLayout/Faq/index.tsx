@@ -18,7 +18,7 @@ const FaqItem = ({ title, answer, isOpen, onClick, isLast }: IFaqItemProps) => {
     <div
       className={`pb-6  border-b border-[#EBECEF] ${isLast ? "mb-0" : "mb-6"}`}
     >
-      <header onClick={onClick} className="cursor-pointer flex justify-between">
+      <div onClick={onClick} className="cursor-pointer flex justify-between">
         <Text className="text-sm font-semibold text-grayscale-400">
           {title}
         </Text>
@@ -29,7 +29,7 @@ const FaqItem = ({ title, answer, isOpen, onClick, isLast }: IFaqItemProps) => {
           alt="Pergunta icone"
           priority
         />
-      </header>
+      </div>
 
       <main
         className={`overflow-hidden transition-all ${

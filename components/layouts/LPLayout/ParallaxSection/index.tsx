@@ -1,6 +1,5 @@
 "use client";
 
-import { Section } from "@/components/elements/Section";
 import clsx from "clsx";
 import { ReactNode } from "react";
 

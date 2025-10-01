@@ -26,7 +26,7 @@ export default function Hero() {
   };
 
   return (
-    <Section className="bg-gradient-to-b from-[#687AF6] to-[#3D4790] relative min-h-screen flex flex-col items-center justify-center bg-cover bg-center">
+    <Section className="bg-gradient-to-b from-[#687AF6] to-[#3D4790] relative flex flex-col items-center justify-center aspect-[2.3/1]">
       {/* Grid de fundo */}
       <div
         className="absolute inset-0"
@@ -60,7 +60,7 @@ export default function Hero() {
             sites&nbsp;
             <TextHighlight
               textColor="text-greenscale-50"
-              className="overflow-hidden h-[1.2em] inline-block"
+              className="overflow-hidden h-[1.2em] flex items-center"
             >
               <AnimatePresence mode="wait">
                 <motion.span

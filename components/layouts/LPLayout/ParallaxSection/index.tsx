@@ -16,14 +16,31 @@ export default function ParallaxSection({
   className,
 }: ParallaxSectionProps) {
   return (
-    <Section
-      className={clsx(
-        "relative z-2 w-full flex items-center justify-center overflow-hidden bg-fixed bg-cover bg-center",
-        background,
-        className
-      )}
-    >
-      {children}
-    </Section>
+    <>
+      {" "}
+      <section
+        className={clsx(
+          "relative z-2 w-full flex items-center justify-center overflow-hidden p-4",
+          background,
+          className
+        )}
+        style={{
+          backgroundAttachment: "fixed", // efeito parallax básico
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {children}
+      </section>
+      {/* <Section
+        className={clsx(
+          "relative z-2 w-full flex md:hidden items-center justify-center overflow-hidden bg-cover bg-fixed bg-center",
+          background,
+          className
+        )}
+      >
+        {children}
+      </Section> */}
+    </>
   );
 }

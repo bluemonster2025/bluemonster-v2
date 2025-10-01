@@ -5,7 +5,7 @@ import ParallaxItem from "../ParallaxItem";
 
 export default function FeaturedFrame() {
   return (
-    <ParallaxSection className=" bg-purplescale-50 flex flex-col gap-5 mb-18 py-24">
+    <ParallaxSection className=" bg-purplescale-50 flex flex-col gap-5 mb-18 py-14 md:py-24">
       <div
         className="absolute inset-0"
         style={{

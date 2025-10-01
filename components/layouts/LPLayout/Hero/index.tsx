@@ -85,7 +85,7 @@ export default function Hero() {
         </div>
 
         {/* Botão WhatsApp */}
-        <div className="w-full md:w-[215px] mx-auto">
+        <div className="w-[215px] mx-auto">
           <WhatsAppButton
             title="Faça um orçamento"
             iconName="BsWhatsapp"

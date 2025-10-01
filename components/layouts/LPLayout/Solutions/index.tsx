@@ -2,6 +2,9 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+
 import { backTexts, cards } from "./content";
 import { Section } from "@/components/elements/Section";
 import { Text, TextHighlight, Title } from "@/components/elements/Texts";
@@ -18,6 +21,14 @@ export default function Solutions() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
+
+  // Keen slider apenas mobile
+  const [sliderRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    slides: {
+      perView: 1.25,
+    },
+  });
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -58,109 +69,81 @@ export default function Solutions() {
     closed: (i: number) => {
       switch (i) {
         case 0:
-          return {
-            left: "35%",
-            y: "-50%",
-            rotate: 0,
-            transition: { duration: 0.8, ease: [0.22, 0.8, 0.2, 1] },
-          };
+          return { left: "35%", y: "-50%", rotate: 0 };
         case 1:
-          return {
-            left: "30%",
-            y: "-50%",
-            rotate: -20,
-            transition: { duration: 0.8, ease: [0.22, 0.8, 0.2, 1] },
-          };
+          return { left: "30%", y: "-50%", rotate: -20 };
         case 2:
-          return {
-            left: "42%",
-            y: "-50%",
-            rotate: 20,
-            transition: { duration: 0.8, ease: [0.22, 0.8, 0.2, 1] },
-          };
+          return { left: "42%", y: "-50%", rotate: 20 };
         default:
-          return {
-            left: "50%",
-            y: "-50%",
-            rotate: 0,
-            transition: { duration: 0.8, ease: [0.22, 0.8, 0.2, 1] },
-          };
+          return { left: "50%", y: "-50%", rotate: 0 };
       }
     },
     open: (i: number) => {
       switch (i) {
         case 0:
-          return {
-            x: "-348px",
-            y: "-50%",
-            rotate: 0,
-            transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-          };
+          return { x: "-348px", y: "-50%", rotate: 0 };
         case 1:
-          return {
-            left: "34%",
-            x: "0px",
-            y: "-50%",
-            rotate: 0,
-            transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-          };
+          return { left: "34%", x: "0px", y: "-50%", rotate: 0 };
         case 2:
-          return {
-            x: "258px",
-            y: "-50%",
-            rotate: 0,
-            transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-          };
+          return { x: "258px", y: "-50%", rotate: 0 };
         default:
-          return {
-            x: "0px",
-            y: "-50%",
-            rotate: 0,
-            transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-          };
+          return { x: "0px", y: "-50%", rotate: 0 };
       }
     },
   };
 
   return (
-    <Section
-      className="flex flex-col items-center justify-center pb-16"
-      title="Bem vindo a bluemonster"
-    >
-      <div className="mb-22 text-center flex flex-col gap-4">
-        <div>
-          <Title as="h2" className="text-5xl">
-            A melhor{" "}
-            <TextHighlight textColor="text-purplescale-50">
-              solução{" "}
-            </TextHighlight>{" "}
-            para o
-          </Title>
+    <>
+      {" "}
+      <Section
+        className="flex flex-col items-center justify-center pb-16"
+        title="Bem vindo a bluemonster"
+      >
+        {/* títulos */}
+        <div className="mb-8 md:mb-22 text-center flex flex-col gap-4">
+          <div className="hidden md:block">
+            <Title as="h2" className="text-5xl">
+              A melhor{" "}
+              <TextHighlight textColor="text-purplescale-50">
+                solução
+              </TextHighlight>{" "}
+              para o
+            </Title>
+            <Title as="h2" className="text-5xl">
+              seu negócio!
+            </Title>
+          </div>
+          <div className="block md:hidden">
+            <Title as="h2" className="text-5xl mb-4">
+              A melhor{" "}
+              <TextHighlight textColor="text-purplescale-50">
+                solução
+              </TextHighlight>
+            </Title>
+            <Title as="h2" className="text-5xl">
+              para o seu negócio!
+            </Title>
+          </div>
         </div>
-        <div>
-          <Title as="h2" className="text-5xl">
-            seu negócio!
-          </Title>
-        </div>
-      </div>
 
-      <div className="w-full flex items-center justify-center py-8">
-        <div
-          ref={ref}
-          className="relative"
-          style={{
-            width: isMd ? `${containerWidth}px` : `${CARD_W}px`,
-            height: `${CARD_H}px`,
-          }}
-        >
-          {cards.map((title, i) => {
-            return (
+        {/* desktop cards animados */}
+        <div className="hidden md:flex w-full items-center justify-center py-8">
+          <div
+            ref={ref}
+            className="relative"
+            style={{
+              width: isMd ? `${containerWidth}px` : `${CARD_W}px`,
+              height: `${CARD_H}px`,
+            }}
+          >
+            {cards.map((title, i) => (
               <motion.div
                 key={title + i}
                 custom={i}
                 initial="closed"
                 animate={isMd ? (isOpen ? "open" : "closed") : "closed"}
                 variants={cardVariants}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   position: "absolute",
                   left: "50%",
@@ -176,19 +159,12 @@ export default function Solutions() {
                 <div
                   className="relative w-full h-full transition-transform duration-500"
                   style={{ transformStyle: "preserve-3d" }}
-                  onMouseEnter={(e) =>
-                    isOpen &&
-                    (e.currentTarget.style.transform = "rotateY(180deg)")
-                  }
-                  onMouseLeave={(e) =>
-                    isOpen &&
-                    (e.currentTarget.style.transform = "rotateY(0deg)")
-                  }
                 >
                   {/* front */}
                   <div
-                    className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25  [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
-        bg-[length:40px_40px] shadow-cards"
+                    className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
+                  [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
+                  bg-[length:40px_40px] shadow-cards"
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     <span className="text-2xl font-semibold text-grayscale-500">
@@ -212,29 +188,54 @@ export default function Solutions() {
                   </div>
                 </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+        </div>
+
+        {/* círculo decorativo */}
+        <div className="relative hidden md:flex justify-center">
+          <svg
+            className="absolute top-[-13rem]"
+            width="777"
+            height="292"
+            viewBox="0 0 777 292"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="388.5"
+              cy="388.5"
+              r="364"
+              stroke="#687AF6"
+              strokeWidth="49"
+            />
+          </svg>
+        </div>
+      </Section>
+      {/* mobile carousel */}
+      <div className="block md:hidden w-full py-8 pl-4 relative">
+        {/* fundo azul à esquerda */}
+        <div className="absolute left-0 top-[-1rem] bottom-[5rem] w-[256px] aspect-[0.77/1] bg-[#687AF6] rounded-tr-[24px] rounded-br-[24px]" />
+
+        <div ref={sliderRef} className="keen-slider relative">
+          {cards.map((title, i) => (
+            <div
+              key={title + i}
+              className="keen-slider__slide flex items-center justify-center"
+            >
+              <div
+                className="w-[312px] h-[328px] flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
+          [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
+          bg-[length:40px_40px] shadow-cards"
+              >
+                <span className="text-2xl font-semibold text-grayscale-500">
+                  {title}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
-      <div className="relative flex justify-center">
-        <svg
-          className="absolute top-[-13rem]"
-          width="777"
-          height="292"
-          viewBox="0 0 777 292"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="388.5"
-            cy="388.5"
-            r="364"
-            stroke="#687AF6"
-            strokeWidth="49"
-          />
-        </svg>
-      </div>
-    </Section>
+    </>
   );
 }

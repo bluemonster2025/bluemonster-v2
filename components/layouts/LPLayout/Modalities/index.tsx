@@ -47,12 +47,12 @@ const slots = [
   { width: 219, height: 219, containerHeight: 368, position: "top-[210px]" },
 ];
 
-const clickAnimate = {
-  src: "/images/pictures/click-animate.webp",
-  alt: "Click Animate",
-  width: 44,
-  height: 68,
-};
+// const clickAnimate = {
+//   src: "/images/pictures/click-animate.webp",
+//   alt: "Click Animate",
+//   width: 44,
+//   height: 68,
+// };
 
 export default function Modalities() {
   const [order, setOrder] = useState([0, 1, 2, 3, 4]);
@@ -135,7 +135,7 @@ export default function Modalities() {
                 />
 
                 {/* Click Animate só no centro */}
-                {isCenter && (
+                {/* {isCenter && (
                   <motion.div
                     className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20"
                     animate={{ y: [0, -15, 0] }}
@@ -152,7 +152,7 @@ export default function Modalities() {
                       height={clickAnimate.height}
                     />
                   </motion.div>
-                )}
+                )} */}
               </motion.div>
             );
           })}

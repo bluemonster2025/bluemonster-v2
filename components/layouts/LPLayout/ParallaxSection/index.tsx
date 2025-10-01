@@ -1,5 +1,6 @@
 "use client";
 
+import { Section } from "@/components/elements/Section";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
@@ -15,19 +16,14 @@ export default function ParallaxSection({
   className,
 }: ParallaxSectionProps) {
   return (
-    <section
+    <Section
       className={clsx(
-        "relative z-2 w-full flex items-center justify-center overflow-hidden",
+        "relative z-2 w-full flex items-center justify-center overflow-hidden bg-fixed bg-cover bg-center",
         background,
         className
       )}
-      style={{
-        backgroundAttachment: "fixed", // efeito parallax básico
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
       {children}
-    </section>
+    </Section>
   );
 }

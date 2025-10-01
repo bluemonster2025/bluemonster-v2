@@ -30,7 +30,7 @@ export const Section = ({
         {title ? (
           <Title
             as="h2"
-            className="text-[32px] mb-10 text-grayscale-600 text-center"
+            className="text-[32px] mb-6 md:mb-10 text-grayscale-600 text-center"
           >
             {title}
           </Title>

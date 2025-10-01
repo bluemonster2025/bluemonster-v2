@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListCards from "../ListCards";
 import { Text } from "@/components/elements/Texts";
 import { CardProps } from "../ListCards/types";
@@ -10,14 +10,39 @@ type Props = {
   itemsPerPage?: number;
 };
 
+// Hook para detectar media query
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const listener = () => setMatches(media.matches);
+
+    setMatches(media.matches);
+    media.addEventListener("change", listener);
+
+    return () => media.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+}
+
 export default function ListCardsWithPagination({
   listCards,
-  itemsPerPage = 8,
+  itemsPerPage = 8, // padrão desktop
 }: Props) {
-  const [visibleCount, setVisibleCount] = useState<number>(itemsPerPage);
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  const perPage = isMobile ? 3 : itemsPerPage;
+
+  const [visibleCount, setVisibleCount] = useState<number>(perPage);
+
+  // quando mudar de mobile ↔ desktop, reseta o visível
+  useEffect(() => {
+    setVisibleCount(perPage);
+  }, [perPage]);
 
   const handleShowMore = () => {
-    setVisibleCount((prev) => prev + itemsPerPage);
+    setVisibleCount((prev) => prev + perPage);
   };
 
   const hasMore = visibleCount < listCards.length;

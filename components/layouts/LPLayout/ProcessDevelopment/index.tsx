@@ -21,34 +21,37 @@ export default function ProcessDevelopment() {
   });
 
   return (
-    <Section
-      id="processo"
-      className="pb-18 lg:pt-10 lg:pb-20 bg-grayscale-50"
-      title="Processo de desenvolvimento"
-    >
-      {/* MOBILE → Slider */}
-      <div className="block lg:hidden">
-        <div ref={sliderRef} className="keen-slider">
+    <>
+      {" "}
+      <Section
+        id="processo"
+        className="pb-18 lg:pt-10 lg:pb-20 bg-grayscale-50"
+        title="Processo de desenvolvimento"
+      >
+        {/* MOBILE → Slider */}
+        <div className="block lg:hidden">
+          <div ref={sliderRef} className="keen-slider">
+            {steps.map((step) => (
+              <div
+                key={step.id}
+                className="keen-slider__slide border border-grayscale-100"
+              >
+                <StepCard step={step} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* DESKTOP → Grid */}
+        <div className="hidden lg:grid grid-cols-3 bg-white max-w-[928px] mx-auto">
           {steps.map((step) => (
-            <div
-              key={step.id}
-              className="keen-slider__slide border border-grayscale-100"
-            >
+            <div key={step.id} className="border border-grayscale-100">
               <StepCard step={step} />
             </div>
           ))}
         </div>
-      </div>
-
-      {/* DESKTOP → Grid */}
-      <div className="hidden lg:grid grid-cols-3 bg-white max-w-[928px] mx-auto">
-        {steps.map((step) => (
-          <div key={step.id} className="border border-grayscale-100">
-            <StepCard step={step} />
-          </div>
-        ))}
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }
 

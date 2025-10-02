@@ -47,18 +47,13 @@ const slots = [
   { width: 219, height: 219, containerHeight: 368, position: "top-[210px]" },
 ];
 
-// const clickAnimate = {
-//   src: "/images/pictures/click-animate.webp",
-//   alt: "Click Animate",
-//   width: 44,
-//   height: 68,
-// };
-
 export default function Modalities() {
   const [order, setOrder] = useState([0, 1, 2, 3, 4]);
 
   const handleClick = (slotIndex: number) => {
     const centerIndex = 2;
+    if (slotIndex === centerIndex) return;
+
     const newOrder = [...order];
     [newOrder[slotIndex], newOrder[centerIndex]] = [
       newOrder[centerIndex],
@@ -81,7 +76,7 @@ export default function Modalities() {
       </Text>
 
       <div className="flex flex-col items-center gap-8 relative">
-        {/* Menu de textos - agora fica em cima */}
+        {/* Menu de textos */}
         <div className="inline-flex max-w-[1175px] justify-center items-center relative gap-2">
           {order.map((imgIndex, slotIndex) => {
             const text = modalidades[imgIndex];
@@ -92,7 +87,7 @@ export default function Modalities() {
               <motion.div
                 key={text}
                 layoutId={`text-${image.id}`}
-                className="flex w-[235px] h-[50px] items-center justify-center cursor-pointer"
+                className="flex w-[200px] md:w-[235px] h-[50px] items-center justify-center cursor-pointer"
                 onClick={() => handleClick(slotIndex)}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               >
@@ -109,7 +104,7 @@ export default function Modalities() {
         </div>
 
         {/* Imagens */}
-        <div className="inline-flex gap-6 flex-[0_0_auto] items-center relative">
+        <div className="inline-flex gap-4 md:gap-6 flex-[0_0_auto] items-center relative">
           {order.map((imgIndex, slotIndex) => {
             const image = initialImages[imgIndex];
             const slot = slots[slotIndex];
@@ -122,6 +117,7 @@ export default function Modalities() {
                 className="relative cursor-pointer"
                 style={{ width: slot.width, height: slot.containerHeight }}
                 onClick={() => handleClick(slotIndex)}
+                layout
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               >
                 <Image
@@ -133,26 +129,6 @@ export default function Modalities() {
                     isCenter ? "z-10" : "z-0"
                   }`}
                 />
-
-                {/* Click Animate só no centro */}
-                {/* {isCenter && (
-                  <motion.div
-                    className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20"
-                    animate={{ y: [0, -15, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 1.2,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Image
-                      src={clickAnimate.src}
-                      alt={clickAnimate.alt}
-                      width={clickAnimate.width}
-                      height={clickAnimate.height}
-                    />
-                  </motion.div>
-                )} */}
               </motion.div>
             );
           })}

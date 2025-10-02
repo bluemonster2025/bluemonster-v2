@@ -31,8 +31,8 @@ export default function ListCardsWithPagination({
   listCards,
   itemsPerPage = 8, // padrão desktop
 }: Props) {
-  const isMobile = useMediaQuery("(max-width: 767px)");
-  const perPage = isMobile ? 3 : itemsPerPage;
+  const isMobile = useMediaQuery("(max-width: 1023px)");
+  const perPage = isMobile ? 4 : itemsPerPage;
 
   const [visibleCount, setVisibleCount] = useState<number>(perPage);
 

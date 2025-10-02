@@ -27,6 +27,15 @@ export default function Solutions() {
     loop: true,
     slides: {
       perView: 1.25,
+      spacing: 10,
+    },
+    breakpoints: {
+      "(min-width: 640px)": {
+        slides: {
+          perView: 2.25,
+          spacing: 0,
+        },
+      },
     },
   });
 
@@ -94,40 +103,39 @@ export default function Solutions() {
 
   return (
     <>
-      {" "}
       <Section
         className="flex flex-col items-center justify-center pb-16"
         title="Bem vindo a bluemonster"
       >
         {/* títulos */}
         <div className="mb-8 md:mb-22 text-center flex flex-col gap-4">
-          <div className="hidden md:block">
-            <Title as="h2" className="text-5xl">
+          <div className="hidden md:flex flex-col gap-4">
+            <Title as="h2" className="text-4xl md:text-5xl">
               A melhor{" "}
               <TextHighlight textColor="text-purplescale-50">
                 solução
               </TextHighlight>{" "}
               para o
             </Title>
-            <Title as="h2" className="text-5xl">
+            <Title as="h2" className="text-4xl md:text-5xl">
               seu negócio!
             </Title>
           </div>
           <div className="block md:hidden">
-            <Title as="h2" className="text-5xl mb-4">
+            <Title as="h2" className="text-4xl md:text-5xl mb-4">
               A melhor{" "}
               <TextHighlight textColor="text-purplescale-50">
                 solução
               </TextHighlight>
             </Title>
-            <Title as="h2" className="text-5xl">
+            <Title as="h2" className="text-4xl md:text-5xl">
               para o seu negócio!
             </Title>
           </div>
         </div>
 
         {/* desktop cards animados */}
-        <div className="hidden md:flex w-full items-center justify-center py-8">
+        <div className="hidden lg:flex w-full items-center justify-center py-8">
           <div
             ref={ref}
             className="relative"
@@ -153,24 +161,24 @@ export default function Solutions() {
                   zIndex: `${count - i}`,
                   perspective: "1000px",
                 }}
-                className="rounded-3xl shadow-cards cursor-pointer"
+                className="group rounded-3xl shadow-cards cursor-pointer"
               >
-                {/* flip container */}
+                {/* flip container com hover */}
                 <div
-                  className="relative w-full h-full transition-transform duration-500"
+                  className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180"
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   {/* front */}
                   <div
                     className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
-                  [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
-                  bg-[length:40px_40px] shadow-cards"
+                      [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[length:40px_40px] shadow-cards"
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     <span className="text-2xl font-semibold text-grayscale-500">
                       {title}
                     </span>
                   </div>
+
                   {/* back */}
                   <div
                     className="absolute w-full h-full flex flex-col items-center justify-center rounded-3xl bg-purplescale-50 text-white p-6 text-center"
@@ -193,7 +201,7 @@ export default function Solutions() {
         </div>
 
         {/* círculo decorativo */}
-        <div className="relative hidden md:flex justify-center">
+        <div className="relative hidden lg:flex justify-center">
           <svg
             className="absolute top-[-13rem]"
             width="777"
@@ -212,8 +220,9 @@ export default function Solutions() {
           </svg>
         </div>
       </Section>
+
       {/* mobile carousel */}
-      <div className="block md:hidden w-full py-8 pl-4 relative">
+      <div className="block lg:hidden w-full py-8 pl-4 relative">
         {/* fundo azul à esquerda */}
         <div className="absolute left-0 top-[-1rem] bottom-[5rem] w-[256px] aspect-[0.77/1] bg-[#687AF6] rounded-tr-[24px] rounded-br-[24px]" />
 
@@ -224,9 +233,9 @@ export default function Solutions() {
               className="keen-slider__slide flex items-center justify-center"
             >
               <div
-                className="w-[312px] h-[328px] flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
-          [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
-          bg-[length:40px_40px] shadow-cards"
+                className="w-[312px] aspect-[0.95/1] flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
+                [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
+                bg-[length:35px_35px] shadow-cards"
               >
                 <span className="text-2xl font-semibold text-grayscale-500">
                   {title}

@@ -271,7 +271,7 @@ export default function Solutions() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute bottom-[2rem] left-1/2 transform -translate-x-[2.5rem] w-[34px] aspect-[0.5/1] pointer-events-none z-50"
+            className="absolute bottom-[2rem] left-1/2 -translate-x-[2.5rem] md:-translate-x-[13.5rem] w-[34px] aspect-[0.5/1] pointer-events-none z-50"
           >
             <Image
               src="/images/pictures/click-animate.webp"

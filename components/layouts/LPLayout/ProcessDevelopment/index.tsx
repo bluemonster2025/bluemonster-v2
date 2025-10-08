@@ -25,7 +25,7 @@ export default function ProcessDevelopment() {
       {" "}
       <Section
         id="processo"
-        className="pb-18 lg:pt-10 lg:pb-20 bg-grayscale-50"
+        className="pt-10 pb-20 bg-grayscale-50"
         title="Processo de desenvolvimento"
       >
         {/* MOBILE → Slider */}
@@ -34,7 +34,7 @@ export default function ProcessDevelopment() {
             {steps.map((step) => (
               <div
                 key={step.id}
-                className="keen-slider__slide border border-grayscale-100"
+                className="keen-slider__slide border border-grayscale-100 bg-white"
               >
                 <StepCard step={step} />
               </div>

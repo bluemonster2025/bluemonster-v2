@@ -5,14 +5,15 @@ import { motion, Variants } from "framer-motion";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
+import Image from "next/image";
 import { backTexts, cards } from "./content";
 import { Section } from "@/components/elements/Section";
 import { Text, TextHighlight, Title } from "@/components/elements/Texts";
 
 export default function Solutions() {
   const ref = useRef<HTMLDivElement | null>(null);
-
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+  const [showHint] = useState(true);
 
   const [isMd, setIsMd] = useState(false);
   useEffect(() => {
@@ -165,15 +166,13 @@ export default function Solutions() {
                 }}
                 className="group rounded-3xl shadow-cards cursor-pointer"
               >
-                {/* flip container com hover */}
                 <div
                   className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  {/* front */}
                   <div
                     className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
-                      [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[length:40px_40px] shadow-cards"
+                    [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[length:40px_40px] shadow-cards"
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     <span className="text-2xl font-semibold text-grayscale-500">
@@ -181,7 +180,6 @@ export default function Solutions() {
                     </span>
                   </div>
 
-                  {/* back */}
                   <div
                     className="absolute w-full h-full flex flex-col items-center justify-center rounded-3xl bg-purplescale-50 text-white p-6 text-center"
                     style={{
@@ -201,93 +199,88 @@ export default function Solutions() {
             ))}
           </div>
         </div>
-
-        {/* círculo decorativo */}
-        <div className="relative hidden lg:flex justify-center">
-          <svg
-            className="absolute top-[-13rem]"
-            width="777"
-            height="292"
-            viewBox="0 0 777 292"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="388.5"
-              cy="388.5"
-              r="364"
-              stroke="#687AF6"
-              strokeWidth="49"
-            />
-          </svg>
-        </div>
       </Section>
 
-      {/* mobile carousel com flip individual ao clicar */}
+      {/* mobile carousel com flip individual + ícone animado de click */}
       <div className="block lg:hidden w-full py-8 pl-4 relative">
         {/* fundo azul à esquerda */}
-        <div className="absolute left-0 top-[-1rem] bottom-[5rem] w-[256px] aspect-[0.77/1] bg-[#687AF6] rounded-tr-[24px] rounded-br-[24px]" />
+        <div className="absolute left-0 top-[-1rem] bottom-[5rem] w-[256px] bg-[#687AF6] rounded-tr-[24px] rounded-br-[24px]" />
 
-        {/* estado global para saber qual card está virado */}
-        {(() => {
-          return (
-            <div ref={sliderRef} className="keen-slider relative">
-              {cards.map((title, i) => {
-                const isFlipped = flippedIndex === i;
+        <div ref={sliderRef} className="keen-slider relative">
+          {cards.map((title, i) => {
+            const isFlipped = flippedIndex === i;
+            const handleClick = () => setFlippedIndex(isFlipped ? null : i);
 
-                const handleClick = () => {
-                  setFlippedIndex(isFlipped ? null : i);
-                };
-
-                return (
+            return (
+              <div
+                key={title + i}
+                className="keen-slider__slide flex items-center justify-center relative"
+              >
+                <div
+                  onClick={handleClick}
+                  className={`relative w-[312px] aspect-[0.95/1] rounded-3xl shadow-cards cursor-pointer transition-transform duration-500 [transform-style:preserve-3d] ${
+                    isFlipped ? "rotate-y-180" : ""
+                  }`}
+                  style={{
+                    transformStyle: "preserve-3d",
+                    perspective: "1000px",
+                  }}
+                >
+                  {/* frente */}
                   <div
-                    key={title + i}
-                    className="keen-slider__slide flex items-center justify-center"
-                  >
-                    <div
-                      onClick={handleClick}
-                      className={`relative w-[312px] aspect-[0.95/1] rounded-3xl shadow-cards cursor-pointer transition-transform duration-500 [transform-style:preserve-3d] ${
-                        isFlipped ? "rotate-y-180" : ""
-                      }`}
-                      style={{
-                        transformStyle: "preserve-3d",
-                        perspective: "1000px",
-                      }}
-                    >
-                      {/* front */}
-                      <div
-                        className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
+                    className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
                     [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
                     bg-[length:35px_35px]"
-                        style={{ backfaceVisibility: "hidden" }}
-                      >
-                        <span className="text-2xl font-semibold text-grayscale-500">
-                          {title}
-                        </span>
-                      </div>
-
-                      {/* back */}
-                      <div
-                        className="absolute w-full h-full flex flex-col items-center justify-center rounded-3xl bg-purplescale-50 text-white p-6 text-center"
-                        style={{
-                          backfaceVisibility: "hidden",
-                          transform: "rotateY(180deg)",
-                        }}
-                      >
-                        <Text className="text-2xl font-semibold mb-2 uppercase">
-                          {backTexts[i].title}
-                        </Text>
-                        <Text className="text-sm font-semibold">
-                          {backTexts[i].description}
-                        </Text>
-                      </div>
-                    </div>
+                    style={{ backfaceVisibility: "hidden" }}
+                  >
+                    <span className="text-2xl font-semibold text-grayscale-500">
+                      {title}
+                    </span>
                   </div>
-                );
-              })}
-            </div>
-          );
-        })()}
+
+                  {/* verso */}
+                  <div
+                    className="absolute w-full h-full flex flex-col items-center justify-center rounded-3xl bg-purplescale-50 text-white p-6 text-center"
+                    style={{
+                      backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                    }}
+                  >
+                    <Text className="text-2xl font-semibold mb-2 uppercase">
+                      {backTexts[i].title}
+                    </Text>
+                    <Text className="text-sm font-semibold">
+                      {backTexts[i].description}
+                    </Text>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* mãozinha fixa no primeiro card */}
+        {showHint && (
+          <motion.div
+            animate={{
+              y: [0, -8, 0],
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-[2rem] left-1/2 transform -translate-x-[2.5rem] w-[34px] aspect-[0.5/1] pointer-events-none z-50"
+          >
+            <Image
+              src="/images/pictures/click-animate.webp"
+              alt="Clique aqui"
+              fill
+              className="object-contain"
+            />
+          </motion.div>
+        )}
       </div>
     </>
   );

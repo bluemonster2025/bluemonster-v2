@@ -38,7 +38,7 @@ export default function Hero() {
       />
 
       {/* Conteúdo */}
-      <div className="relative z-10 text-center px-4 flex flex-col items-center gap-15 md:gap-10 lg:gap-20 pt-20 md:pt-12 lg:pt-0">
+      <div className="relative z-10 text-center px-4 flex flex-col items-center gap-25 md:gap-10 lg:gap-20 pt-0 md:pt-12 lg:pt-0">
         {/* Logo e slogan */}
         <Link
           href="/"

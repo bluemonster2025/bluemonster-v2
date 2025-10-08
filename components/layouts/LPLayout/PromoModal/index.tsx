@@ -134,7 +134,7 @@ export default function PromoModal() {
 
       {/* MOBILE */}
       <div className="block lg:hidden">
-        <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-100">
           <div className="relative w-[85%] max-w-[21rem]">
             <div className="relative w-full xs:h-[550px] h-[640px]">
               <Image

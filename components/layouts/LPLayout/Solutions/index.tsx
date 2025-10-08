@@ -12,6 +12,8 @@ import { Text, TextHighlight, Title } from "@/components/elements/Texts";
 export default function Solutions() {
   const ref = useRef<HTMLDivElement | null>(null);
 
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+
   const [isMd, setIsMd] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -221,29 +223,71 @@ export default function Solutions() {
         </div>
       </Section>
 
-      {/* mobile carousel */}
+      {/* mobile carousel com flip individual ao clicar */}
       <div className="block lg:hidden w-full py-8 pl-4 relative">
         {/* fundo azul à esquerda */}
         <div className="absolute left-0 top-[-1rem] bottom-[5rem] w-[256px] aspect-[0.77/1] bg-[#687AF6] rounded-tr-[24px] rounded-br-[24px]" />
 
-        <div ref={sliderRef} className="keen-slider relative">
-          {cards.map((title, i) => (
-            <div
-              key={title + i}
-              className="keen-slider__slide flex items-center justify-center"
-            >
-              <div
-                className="w-[312px] aspect-[0.95/1] flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
-                [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
-                bg-[length:35px_35px] shadow-cards"
-              >
-                <span className="text-2xl font-semibold text-grayscale-500">
-                  {title}
-                </span>
-              </div>
+        {/* estado global para saber qual card está virado */}
+        {(() => {
+          return (
+            <div ref={sliderRef} className="keen-slider relative">
+              {cards.map((title, i) => {
+                const isFlipped = flippedIndex === i;
+
+                const handleClick = () => {
+                  setFlippedIndex(isFlipped ? null : i);
+                };
+
+                return (
+                  <div
+                    key={title + i}
+                    className="keen-slider__slide flex items-center justify-center"
+                  >
+                    <div
+                      onClick={handleClick}
+                      className={`relative w-[312px] aspect-[0.95/1] rounded-3xl shadow-cards cursor-pointer transition-transform duration-500 [transform-style:preserve-3d] ${
+                        isFlipped ? "rotate-y-180" : ""
+                      }`}
+                      style={{
+                        transformStyle: "preserve-3d",
+                        perspective: "1000px",
+                      }}
+                    >
+                      {/* front */}
+                      <div
+                        className="absolute w-full h-full flex items-center justify-center rounded-3xl bg-white border border-grayscale-25 
+                    [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]
+                    bg-[length:35px_35px]"
+                        style={{ backfaceVisibility: "hidden" }}
+                      >
+                        <span className="text-2xl font-semibold text-grayscale-500">
+                          {title}
+                        </span>
+                      </div>
+
+                      {/* back */}
+                      <div
+                        className="absolute w-full h-full flex flex-col items-center justify-center rounded-3xl bg-purplescale-50 text-white p-6 text-center"
+                        style={{
+                          backfaceVisibility: "hidden",
+                          transform: "rotateY(180deg)",
+                        }}
+                      >
+                        <Text className="text-2xl font-semibold mb-2 uppercase">
+                          {backTexts[i].title}
+                        </Text>
+                        <Text className="text-sm font-semibold">
+                          {backTexts[i].description}
+                        </Text>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
+          );
+        })()}
       </div>
     </>
   );

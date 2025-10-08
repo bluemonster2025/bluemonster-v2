@@ -130,9 +130,8 @@ export default function Modalities() {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </Text>
-
       {/* Menu de textos */}
-      <div className="inline-flex justify-center items-center relative gap-2 mb-12">
+      <div className="inline-flex justify-center items-center relative gap-2 mb-12 w-full">
         {order.map((imgIndex, slotIndex) => {
           const text = modalidades[imgIndex];
           const isCenter = slotIndex === centerIndex;
@@ -159,9 +158,8 @@ export default function Modalities() {
           );
         })}
       </div>
-
       {/* Imagens */}
-      <div className="inline-flex gap-5 flex-[0_0_auto] items-center relative">
+      <div className="inline-flex gap-5 flex-[0_0_auto] items-center relative justify-center w-full">
         {order.map((imgIndex, slotIndex) => {
           const image = initialImages[imgIndex];
           const slot = slots[slotIndex];

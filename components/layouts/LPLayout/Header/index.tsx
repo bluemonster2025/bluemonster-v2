@@ -82,7 +82,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-8 md:top-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center z-50 bg-[#00000066] rounded-lg ${
+      className={`hidden md:flex fixed top-8 md:top-4 left-1/2 transform -translate-x-1/2 items-center justify-center z-50 bg-[#00000066] rounded-lg ${
         (scrollTopDistance > 30 || isOpenMobileMenu) &&
         "bg-grayscale-700 backdrop-blur-lg bg-opacity-60"
       }`}

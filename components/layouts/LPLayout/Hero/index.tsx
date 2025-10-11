@@ -40,10 +40,7 @@ export default function Hero() {
       {/* Conteúdo */}
       <div className="relative z-10 text-center px-4 flex flex-col items-center gap-25 md:gap-10 lg:gap-20 pt-0 md:pt-12 lg:pt-0">
         {/* Logo e slogan */}
-        <Link
-          href="/"
-          className="relative w-[308px] md:w-[250px] aspect-[5.81/1]"
-        >
+        <Link href="/" className="relative w-[207px] aspect-[4.81/1]">
           <Image
             fill
             alt="Blue Monster"

@@ -51,7 +51,13 @@ export const WhatsAppButton = ({
 
   // Botão só ícone
   return (
-    <button type="button" onClick={handleClick} className="">
+    <button
+      type="button"
+      onClick={handleClick}
+      className=""
+      aria-label={title || "Abrir conversa no WhatsApp"}
+      title={title || "Abrir conversa no WhatsApp"}
+    >
       {iconName && <Icon name={iconName} color="#75E3A4" size={iconSize} />}
     </button>
   );

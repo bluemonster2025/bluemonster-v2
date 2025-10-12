@@ -75,9 +75,9 @@ export default function Hero() {
                 </motion.span>
               </AnimatePresence>
             </TextHighlight>
-            <Title className="hidden lg:block">e de alta performance.</Title>
-            <Title className="block lg:hidden">e de alta</Title>
-            <Title className="block lg:hidden">performance.</Title>
+            <div className="hidden lg:block">e de alta performance.</div>
+            <div className="block lg:hidden">e de alta</div>
+            <div className="block lg:hidden">performance.</div>
           </Title>
         </div>
 

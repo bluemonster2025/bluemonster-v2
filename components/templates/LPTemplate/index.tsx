@@ -9,14 +9,13 @@ import { listCardsServices } from "@/components/layouts/LPLayout/ListCards/conte
 import Modalities from "@/components/layouts/LPLayout/Modalities";
 import ProcessDevelopment from "@/components/layouts/LPLayout/ProcessDevelopment";
 import ListCardsWithPagination from "@/components/layouts/LPLayout/ListCardsWithPagination";
-import PromoModal from "@/components/layouts/LPLayout/PromoModal";
 import Carousel from "@/components/layouts/LPLayout/Carousel";
 import Solutions from "@/components/layouts/LPLayout/Solutions";
 
 export function LPTemplate() {
   return (
     <>
-      <PromoModal />
+      {/* <PromoModal /> */}
 
       <Hero />
 

@@ -183,8 +183,7 @@ export default function Modalities() {
         title="Modalidades"
       >
         <Text className="text-grayscale-500 text-sm text-center max-w-[852px] mx-auto mb-20">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Veja as modalidades de sites que desenvolvemos
         </Text>
 
         {/* CONTEÚDO DESKTOP (DENTRO da Section) */}

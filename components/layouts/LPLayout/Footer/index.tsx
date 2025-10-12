@@ -17,13 +17,13 @@ export const Footer = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="relative w-45 h-12 flex"
+            className="relative w-[167px] aspect-[5.06/1] flex"
             aria-label="Página inicial Bluemonster"
           >
             <Image
               fill
               alt="Logo Bluemonster"
-              src="/images/logos/logo-branco.svg"
+              src="/images/logos/logo-branca.svg"
               style={{ objectFit: "contain" }}
               priority
             />

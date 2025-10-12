@@ -316,6 +316,7 @@ export default function Modalities() {
             {/* Ajustei a margem superior aqui */}
             <button
               onClick={() => instanceRef.current?.prev()}
+              aria-label="Anterior"
               className="p-3 bg-transparent rounded-full text-grayscale-800 hover:bg-grayscale-100 transition-colors"
             >
               <svg
@@ -324,6 +325,7 @@ export default function Modalities() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
+                aria-hidden="true"
               >
                 <path
                   d="M20 12H4M4 12L10 6M4 12L10 18"
@@ -336,6 +338,7 @@ export default function Modalities() {
             </button>
             <button
               onClick={() => instanceRef.current?.next()}
+              aria-label="Próximo"
               className="p-3 bg-transparent rounded-full text-grayscale-800 hover:bg-grayscale-100 transition-colors"
             >
               <svg
@@ -344,6 +347,7 @@ export default function Modalities() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
+                aria-hidden="true"
               >
                 <path
                   d="M4 12H20M20 12L14 18M20 12L14 6"

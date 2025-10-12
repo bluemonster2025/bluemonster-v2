@@ -20,25 +20,25 @@ const modalidades = [
 const initialImages = [
   {
     id: "site",
-    src: "/images/pictures/site-institucional.webp",
+    src: "/images/pictures/site-institucional_.webp",
     alt: "Site Institucional",
   },
   {
     id: "cardapio",
-    src: "/images/pictures/cardapio-digital.webp",
+    src: "/images/pictures/cardapio-digital_.webp",
     alt: "Cardápio Digital",
   },
   {
     id: "ecommerce",
-    src: "/images/pictures/ecommerce.webp",
+    src: "/images/pictures/ecommerce_.webp",
     alt: "E-commerce",
   },
   {
     id: "landing",
-    src: "/images/pictures/landing-page.webp",
+    src: "/images/pictures/landing-page_.webp",
     alt: "Landing Page",
   },
-  { id: "blog", src: "/images/pictures/blog.webp", alt: "Blog" },
+  { id: "blog", src: "/images/pictures/blog_.webp", alt: "Blog" },
 ];
 
 const desktopSlots = [
@@ -240,6 +240,7 @@ export default function Modalities() {
                       height={slot.height}
                       className="object-cover rounded-xl"
                       priority={slotIndex === centerIndex}
+                      sizes="(max-width: 768px) 100vw, 208px"
                     />
                   </motion.div>
                 );
